@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 style="align-items: center; display: flex; flex-direction: column;">Formulaire</h1>
+        <form>
+            <div style="align-items: center; display: flex; flex-direction: column;">
+                <label for="nom" class="form-label">Nom :</label>
+                <input type="text" class="form-control" id="nom" name="nom" required>
+
+                <label for="prenom" class="form-label">Prénom :</label>
+                <input type="text" class="form-control" id="prenom" name="prenom" required>
+
+                <label for="adresse" class="form-label">Adresse :</label>
+                <input type="text" class="form-control" id="adresse" name="adresse" required>
+         
+                <label for="cp" class="form-label">Code Postal :</label>
+                <input type="text" class="form-control" id="cp" name="cp" title="Entrez un code postal valide à 5 chiffres" required>
+            
+                <label for="ville" class="form-label">Ville :</label>
+                <input type="text" class="form-control" id="ville" name="ville" required>
+
+                <label for="tel" class="form-label">Téléphone :</label>
+                <input type="tel" class="form-control" id="tel" name="tel" pattern="[0-9]{10}" title="Entrez un numéro de téléphone valide à 10 chiffres (sans espaces ni caractères spéciaux)" required>
+
+                <label for="email" class="form-label">Email :</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+
+                <label for="civilite" class="form-label">Civilité :</label>
+                <select class="form-select" id="civilite" name="civilite" required>
+                    <option value="M">Monsieur</option>
+                    <option value="Mme">Madame</option>
+                </select>
+
+                <label for="password" class="form-label">Mot de passe :</label>
+                <input type="password" class="form-control" id="password" name="password" minlength="8" required>
+
+                <label for="login" class="form-label">Login :</label>
+                <input type="text" class="form-control" id="login" name="login" required>
+
+            <button type="submit" class="btn btn-primary">S'inscrire</button>
+        </form>
+    </div>
+</body>
+
+<script>
+    $(document).ready(function() {
+        // Fonction de validation
+        function validateForm() {
+            var password = $("#password").val();
+            var confirmPassword = $("#confirmPassword").val();
+    
+            // Vérifier si les mots de passe correspondent
+            if (password !== confirmPassword) {
+                $("#passwordError").text("Les mots de passe ne correspondent pas.");
+                return false; // Empêcher la soumission du formulaire
+            } else {
+                $("#passwordError").text(""); // Effacer le message d'erreur s'il existe
+                return true; // Permettre la soumission du formulaire
+            }
+        }
+    
+        // Associer la fonction de validation à l'événement onSubmit du formulaire
+        $("#myForm").submit(function() {
+            return validateForm();
+        });
+    });
+    </script>
+    
+</html>
