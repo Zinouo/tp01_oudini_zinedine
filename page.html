@@ -50,29 +50,5 @@
         </form>
     </div>
 </body>
-
-<script>
-    $(document).ready(function() {
-        // Fonction de validation
-        function validateForm() {
-            var password = $("#password").val();
-            var confirmPassword = $("#confirmPassword").val();
-    
-            // Vérifier si les mots de passe correspondent
-            if (password !== confirmPassword) {
-                $("#passwordError").text("Les mots de passe ne correspondent pas.");
-                return false; // Empêcher la soumission du formulaire
-            } else {
-                $("#passwordError").text(""); // Effacer le message d'erreur s'il existe
-                return true; // Permettre la soumission du formulaire
-            }
-        }
-    
-        // Associer la fonction de validation à l'événement onSubmit du formulaire
-        $("#myForm").submit(function() {
-            return validateForm();
-        });
-    });
-    </script>
     
 </html>
