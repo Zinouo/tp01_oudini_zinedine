@@ -3,52 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulaire</title>
+    <title>Formulaire de Compte Client</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./jquery-3.7.1.js"></script>
 </head>
 <body>
     <div class="container">
-        <h1 style="align-items: center; display: flex; flex-direction: column;">Formulaire</h1>
+        <h1>Formulaire</h1>
         <form>
-            <div style="align-items: center; display: flex; flex-direction: column;">
+            <div class="mb-3">
                 <label for="nom" class="form-label">Nom :</label>
                 <input type="text" class="form-control" id="nom" name="nom" required>
+            </div>
 
+            <div class="mb-3">
                 <label for="prenom" class="form-label">Prénom :</label>
                 <input type="text" class="form-control" id="prenom" name="prenom" required>
+            </div>
 
-                <label for="adresse" class="form-label">Adresse :</label>
-                <input type="text" class="form-control" id="adresse" name="adresse" required>
-         
-                <label for="cp" class="form-label">Code Postal :</label>
-                <input type="text" class="form-control" id="cp" name="cp" title="Entrez un code postal valide à 5 chiffres" required>
-            
-                <label for="ville" class="form-label">Ville :</label>
-                <input type="text" class="form-control" id="ville" name="ville" required>
+            <label for="adresse" class="form-label">Adresse :</label>
+            <input type="text" class="form-control" id="adresse" name="adresse" required>
+     
+            <label for="cp" class="form-label">Code Postal :</label>
+            <input type="text" class="form-control" id="cp" name="cp" title="Entrez un code postal valide à 5 chiffres" required>
+        
+            <label for="ville" class="form-label">Ville :</label>
+            <input type="text" class="form-control" id="ville" name="ville" required>
 
-                <label for="tel" class="form-label">Téléphone :</label>
-                <input type="tel" class="form-control" id="tel" name="tel" pattern="[0-9]{10}" title="Entrez un numéro de téléphone valide à 10 chiffres (sans espaces ni caractères spéciaux)" required>
+            <label for="tel" class="form-label">Téléphone :</label>
+            <input type="tel" class="form-control" id="tel" name="tel" pattern="[0-9]{10}" title="Entrez un numéro de téléphone valide à 10 chiffres (sans espaces ni caractères spéciaux)" required>
 
-                <label for="email" class="form-label">Email :</label>
-                <input type="email" class="form-control" id="email" name="email" required>
+            <label for="email" class="form-label">Email :</label>
+            <input type="email" class="form-control" id="email" name="email" required>
 
-                <label for="civilite" class="form-label">Civilité :</label>
-                <select class="form-select" id="civilite" name="civilite" required>
-                    <option value="M">Monsieur</option>
-                    <option value="Mme">Madame</option>
-                </select>
+            <label for="civilite" class="form-label">Civilité :</label>
+            <select class="form-select" id="civilite" name="civilite" required>
+                <option value="M">Monsieur</option>
+                <option value="Mme">Madame</option>
+            </select>
 
+            <label for="login" class="form-label">Login :</label>
+            <input type="text" class="form-control" id="login" name="login" required>
+
+            <div class="mb-3">
                 <label for="password" class="form-label">Mot de passe :</label>
                 <input type="password" class="form-control" id="password" name="password" minlength="8" required>
+            </div>
 
-                <label for="login" class="form-label">Login :</label>
-                <input type="text" class="form-control" id="login" name="login" required>
+            <div class="mb-3">
+                <label for="confirmPassword" class="form-label">Confirmez le mot de passe :</label>
+                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+                
+                <div id="passwordError" class="text-danger"></div>
+            </div>
+
+            <div id="successMessage" class="text-success"></div>
 
             <button type="submit" class="btn btn-primary">S'inscrire</button>
         </form>
     </div>
+
+    <script>
+    $(document).ready(function () {
+        $('form').on('submit', function (event) {
+            event.preventDefault();
+
+            var password = $('#password').val();
+            var confirmPassword = $('#confirmPassword').val();
+
+            var successMessage = $('#successMessage');
+
+            if (password === confirmPassword) {
+                successMessage.text('Les mots de passe correspondent. Le formulaire a été soumis avec succès.');
+                successMessage.show();
+            } else {
+                successMessage.text('');
+                $('#passwordError').text('Les mots de passe ne correspondent pas.');
+            }
+    });
+});
+
+    </script>
 </body>
-    
 </html>
